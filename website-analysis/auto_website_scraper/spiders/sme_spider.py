@@ -5,6 +5,11 @@ from scrapy import signals
 from scrapy.xlib.pydispatch import dispatcher
 from scrapy.http import Request
 
+from scrapy.spidermiddlewares.httperror import HttpError
+from twisted.internet.error import DNSLookupError
+from twisted.internet.error import TimeoutError
+from twisted.internet.error import ConnectError
+
 from ..intelligence.phone_number.logic import PhoneParser
 from ..items import AutoScraperItem
 from ..intelligence.utils.utils import apply_schema_to_url
@@ -59,9 +64,36 @@ class BaseSpider(scrapy.Spider):
         """
         for req_url in self.start_urls:
          print"URL:",req_url
-         yield Request(url=req_url, meta ={'domain': self.url_link})#,headers=header)
+         yield Request(url=req_url, meta ={'domain': self.url_link})
 
-    def parse(self, response):
+    def errback_httpbin(self, failure):
+        # log all errback failures,
+        # in case you want to do something special for some errors,
+        # you may need the failure's type
+        self.logger.error(repr(failure))
+
+        #if isinstance(failure.value, HttpError):
+        if failure.check(HttpError):
+            # you can get the response
+            response = failure.value.response
+            self.logger.error('HttpError on %s', response.url)
+
+        #elif isinstance(failure.value, DNSLookupError):
+        elif failure.check(DNSLookupError):
+            # this is the original request
+            request = failure.request
+            self.logger.error('DNSLookupError on %s', request.url)
+
+        #elif isinstance(failure.value, TimeoutError):
+        elif failure.check(TimeoutError):
+            request = failure.request
+            self.logger.error('TimeoutError on %s', request.url)
+        elif failure.check(ConnectError):
+            request = failure.request
+            self.logger.error('ConnectonError on %s', request.url)
+        else:
+            request = failure.request
+            self.logger.error('UNKNOWN ERROR on %s', request.url)
         """
         Parses the main html response
         :param response:
@@ -164,5 +196,6 @@ class BaseSpider(scrapy.Spider):
 
                   if link in  next_url and  link != next_url:
                          self.start_urls.append(next_url)
+
 
 

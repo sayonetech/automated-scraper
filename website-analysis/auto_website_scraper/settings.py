@@ -11,7 +11,7 @@ BOT_VERSION = '1.0'
 DOWNLOADER_MIDDLEWARES = {
     'scrapy.downloadermiddlewares.httpcache.HttpCacheMiddleware': 300,
     'scrapy.spidermiddlewares.offsite.OffsiteMiddleware':301,
-    'sme_website_scraper.middlewares.FilterResponses': 302,
+    'auto_website_scraper.middlewares.FilterResponses': 302,
 }
 #for chaching pourpose
 HTTPCACHE_STORAGE='scrapy.extensions.httpcache.FilesystemCacheStorage' #using cache in file system
