@@ -1,4 +1,4 @@
-"""sme_rest URL Configuration
+"""AUTO_rest URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/1.10/topics/http/urls/
@@ -16,8 +16,8 @@ Including another URLconf
 
 from django.conf.urls import url, include
 from django.contrib import admin
-admin.site.site_header = 'SME-WEBSITE-ANALYSIS administration'
-admin.site.site_title = 'SME-WEBSITE-ANALYSIS site admin'
+admin.site.site_header = 'AUTO-WEBSITE-ANALYSIS administration'
+admin.site.site_title = 'AUTO-WEBSITE-ANALYSIS site admin'
 
 
 
