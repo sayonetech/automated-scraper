@@ -79,6 +79,10 @@ Since our container is in a network,we have to link them.Scraper container will 
 
 2.Add this csv file to 'app-server' folder
 
+### System Layout
+
+![alt tag](https://raw.githubusercontent.com/sayonetech/automated-scraper/master/specs/SYSTEM-ARCHITECTUER.png)
+
 ### To build in LOCAL
 
 1. Pull the repo to your local system.
