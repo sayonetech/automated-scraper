@@ -76,6 +76,7 @@ Since our container is in a network,we have to link them.Scraper container will 
 
 ### Insert url to Crawl
 1.Create a csv file which contain the urls to crawl.File name as'urls.csv' 
+
 2.Add this csv file to 'app-server' folder
 
 ### To build in LOCAL
