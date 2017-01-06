@@ -21,8 +21,8 @@ HTTPCACHE_POLICY='scrapy.extensions.httpcache.DummyPolicy'
 
 # for caching in db use 'scrapy.extensions.httpcache.DbmCacheStorage'
 
-SPIDER_MODULES = ['sme_website_scraper.spiders']
-NEWSPIDER_MODULE = 'sme_website_scraper.spiders'
+SPIDER_MODULES = ['auto_website_scraper.spiders']
+NEWSPIDER_MODULE = 'auto_website_scraper.spiders'
 LOG_LEVEL = 'ERROR'
 
 
@@ -36,17 +36,13 @@ AUTOTHROTTLE_ENABLED = True
 REACTOR_THREADPOOL_MAXSIZE=20
 DOWNLOAD_TIMEOUT = 10
 DNSCACHE_ENABLED = True
-DUPEFILTER_CLASS = 'sme_website_scraper.bloom_filter.BLOOMDupeFilter'
+DUPEFILTER_CLASS = 'auto_website_scraper.bloom_filter.BLOOMDupeFilter'
 
 ITEM_PIPELINES = {
-        'sme_website_scraper.pipelines.SmeWebsiteScraperPipeline':100
+        'auto_website_scraper.pipelines.SmeWebsiteScraperPipeline':100
     }
 
 USER_AGENT = "Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/27.0.1453.93 Safari/537.36"
 
-#memory optimizing
-# DEPTH_PRIORITY = 1
-# SCHEDULER_DISK_QUEUE = 'scrapy.squeues.PickleFifoDiskQueue'
-# SCHEDULER_MEMORY_QUEUE = 'scrapy.squeues.FifoMemoryQueue'
 
 
