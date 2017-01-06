@@ -1,0 +1,49 @@
+#This file is for illustrative and dev purposes
+version: '2'
+services:
+  db:
+    restart: always
+    image: postgres:9.4
+    environment:
+       - POSTGRES_PASSWORD=pass1234
+       - POSTGRES_USER=sayone
+       - POSTGRES_DB=scraper 
+    volumes:
+       - ./db:/var/lib/postgresql/data/ 
+  web:
+    restart: always
+    build: ./app-server
+    environment:
+       - DB_PASSWORD=pass1234
+       - DB_USER=sayone
+       - DB_NAME=scraper 
+       - DB_HOST=db
+       - SCRAPER_HOST=scraper        
+       - SUPER_USERNAME=superuser
+       - SUPER_PASSWORD=superpwd
+       - SUPER_EMAIL=
+       - DEBUG_VAR=False
+       - ALLOWED_HOSTS=* 
+
+    
+    ports:
+       - "8000:8000"
+    depends_on:
+       - db
+  scraper:
+    restart: always
+    build: ./website-analysis
+    volumes:
+       - ./data:/scraper-cache
+    
+    depends_on:
+       - db
+       - web
+      
+    environment:
+       - DB_PASSWORD=pass1234
+       - DB_USER=sayone
+       - DB_NAME=scraper 
+       - DB_HOST=db
+
+       

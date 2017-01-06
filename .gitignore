@@ -1,0 +1,11 @@
+*.pyc
+*.sublime-project
+*.sublime-workspace
+.Python
+bin
+include
+lib
+build
+selenium
+*~
+
