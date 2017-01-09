@@ -21,7 +21,7 @@ services:
        - SCRAPER_HOST=scraper        
        - SUPER_USERNAME=superuser
        - SUPER_PASSWORD=superpwd
-       - SUPER_EMAIL=
+       - SUPER_EMAIL=name@gmail.com
        - DEBUG_VAR=False
        - ALLOWED_HOSTS=* 
 
