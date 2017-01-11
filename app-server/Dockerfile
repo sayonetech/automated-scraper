@@ -7,24 +7,13 @@ FROM python:2.7
 MAINTAINER jithin.sayone@gmail.com
 
 RUN apt-get update
-#install requirement packages
-RUN pip install Django==1.10.3
-RUN pip install django-filter==0.15.3
-RUN pip install django-pgjson==0.3.1
-RUN pip install djangorestframework==3.5.2
-RUN pip install jsonfield==1.0.3
-RUN pip install Markdown==2.6.7
-RUN pip install psycopg2==2.6.2
-RUN pip install scrapinghub==1.9.0
-RUN pip install matplotlib==1.5.3
-RUN pip install numpy==1.11.2
-RUN pip install boto==2.43.0
-RUN pip install paramiko==2.0.2
-
 
 #Add Project to docker
 ADD . /app/
 
+#Install dependencies
+RUN pip install -r /app/requirements.txt
+ 
 CMD python /app/manage.py makemigrations && \
     python /app/manage.py migrate && \
     python /app/manage.py create && \

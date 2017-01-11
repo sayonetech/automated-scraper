@@ -1,0 +1,11 @@
+Django==1.10.3
+django-filter==0.15.3
+django-pgjson==0.3.1
+djangorestframework==3.5.2
+jsonfield==1.0.3
+Markdown==2.6.7
+psycopg2==2.6.2
+matplotlib==1.5.3
+numpy==1.11.2
+boto==2.43.0
+paramiko==2.0.2
